@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — Kea</title>
+<meta name="description" content="Privacy policy for Kea, a hardware key remapper for Android by TechiBoy Studios. Kea collects nothing and has no internet permission.">
+<style>
+  :root {
+    --bg: #ffffff; --panel: #f7f7f9; --ink: #16161a; --muted: #5c5c64;
+    --line: #e4e4e9; --accent: #9a5d20;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0d0d11; --panel: #16161b; --ink: #f2f2f0; --muted: #a2a2a8;
+      --line: #26262e; --accent: #e8a33d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Helvetica, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  .wrap { max-width: 46rem; margin: 0 auto; padding: 3rem 1.25rem 5rem; }
+  header { border-bottom: 1px solid var(--line); padding-bottom: 1.5rem; margin-bottom: 2rem; }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .5rem; letter-spacing: -.02em; }
+  h2 {
+    font-size: 1.15rem; margin: 2.5rem 0 .75rem; letter-spacing: -.01em;
+    padding-top: 1.25rem; border-top: 1px solid var(--line);
+  }
+  h2:first-of-type { border-top: 0; padding-top: 0; }
+  .meta { color: var(--muted); font-size: .9rem; margin: 0; }
+  .lede { font-size: 1.05rem; color: var(--muted); }
+  strong { color: var(--ink); }
+  a { color: var(--accent); }
+  code {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
+    padding: .1em .35em; font-size: .875em;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+  .table-scroll { overflow-x: auto; margin: 1rem 0; }
+  table { border-collapse: collapse; width: 100%; font-size: .93rem; }
+  th, td { text-align: left; padding: .6rem .75rem; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; white-space: nowrap; }
+  footer { margin-top: 3.5rem; padding-top: 1.5rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>Privacy Policy for Kea</h1>
+  <p class="meta">Last updated: 18 August 2026 &middot; TechiBoy Studios &middot; <code>com.techiboystudios.kea</code></p>
+</header>
+
+<p class="lede">Kea is a hardware key remapper for Android. This policy explains what the app
+does with your information. It is short because Kea collects nothing.</p>
+
+<h2>What Kea collects</h2>
+<p><strong>Nothing.</strong> Kea does not collect, store, transmit, sell or share any personal
+information, usage data, device identifiers, contacts, location, or analytics of any kind. There
+is no account, no sign-in, and no server.</p>
+
+<h2>Why that claim is verifiable</h2>
+<p>Kea does not request the <code>INTERNET</code> permission. An Android app without it cannot
+open a network connection at all, so it is not technically capable of sending your data anywhere,
+whatever any policy might say. You can confirm this yourself in
+<strong>Settings &rarr; Apps &rarr; Kea &rarr; Permissions</strong>, or by inspecting the app's
+manifest.</p>
+<p>Kea contains no analytics SDK, no crash-reporting SDK, no advertising SDK and no tracking
+libraries. The only third-party code in the app is Google's AndroidX libraries, the Kotlin
+standard library, and the optional Shizuku client described below.</p>
+
+<h2>Accessibility Service</h2>
+<p>Kea uses an <code>AccessibilityService</code> for one purpose: to detect presses of a hardware
+button. Android provides no other way for an app to observe hardware key events while it is not in
+the foreground.</p>
+<p>The service is declared with <code>canRequestFilterKeyEvents</code> and receives key events
+only. It does <strong>not</strong> request <code>canRetrieveWindowContent</code>, so it cannot read
+the text, images or contents of any screen, in Kea or in any other app. It does not log, store or
+transmit key events. Each press is matched against the key you taught Kea and then acted upon
+locally, on your device.</p>
+<p>The service is declared <code>isAccessibilityTool="false"</code> because Kea is a general
+utility rather than an assistive tool for users with disabilities.</p>
+
+<h2>What is stored on your device</h2>
+<p>Your settings, which are: the action bound to each gesture, your timing preferences, your chosen
+appearance and accent colour, your overlay position, and the hardware fingerprint of the key you
+taught Kea.</p>
+<p>These live in Kea's private app storage. They never leave your phone unless you choose
+<strong>Backup &amp; restore &rarr; Export settings</strong>, which writes a file to a location you
+pick and then control. Uninstalling Kea deletes this data.</p>
+
+<h2>Permissions, and why each exists</h2>
+<div class="table-scroll">
+<table>
+  <thead><tr><th>Permission</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Accessibility service</td><td>Detect presses of your hardware button. The app cannot work without it</td></tr>
+    <tr><td>Display over other apps</td><td>Draw the small on-screen confirmation after a press</td></tr>
+    <tr><td>Modify system settings</td><td>Only if you bind the rotation lock or auto-brightness actions</td></tr>
+    <tr><td>Do Not Disturb access</td><td>Only if you bind the Do Not Disturb or ringer actions</td></tr>
+    <tr><td>Vibrate</td><td>Haptic confirmation on a press</td></tr>
+    <tr><td>Wake lock</td><td>Only if you bind the wake-screen action. Held for a moment, then released</td></tr>
+    <tr><td>Foreground service, media projection</td><td>Only if you bind the screen-recording action</td></tr>
+    <tr><td>Notifications</td><td>The ongoing notification Android requires while a recording runs</td></tr>
+    <tr><td>Microphone</td><td>Only if you turn on microphone audio for screen recordings. Off by default</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Kea does not request internet access, location, contacts, storage access, phone state, or any
+other permission not listed here.</p>
+
+<h2>Screen recording and microphone</h2>
+<p>If you bind the screen-recording action, recordings are written to your device's own media
+storage through Android's MediaProjection API, after the system consent dialog. Recording only ever
+starts when you press your button. Microphone capture is off by default and is used only inside a
+recording you started. Kea never uploads recordings or audio anywhere, and cannot, having no
+network permission.</p>
+
+<h2>Shizuku</h2>
+<p>Two optional features can use <a href="https://shizuku.rikka.app/">Shizuku</a>, a separate app
+you would install yourself: the camera shutter action, and helping you switch off a phone
+manufacturer's own action on the button.</p>
+<p>When used, Kea asks Shizuku to run a single shell command on the device. No data is sent, and
+nothing leaves your phone. If Shizuku is not installed, these two features are simply unavailable
+and everything else works normally.</p>
+
+<h2>Children</h2>
+<p>Kea is not directed at children and collects no data from anyone, of any age.</p>
+
+<h2>Deleting your data</h2>
+<p>There is no data held anywhere for us to delete. Uninstalling Kea removes its settings from your
+device. Any backup file you exported yourself remains wherever you saved it, under your control.</p>
+
+<h2>Changes to this policy</h2>
+<p>If this policy changes, the updated version will be published at this address and the date at
+the top will be updated.</p>
+
+<h2>Contact</h2>
+<p>Questions about this policy or the app: <a href="mailto:techiboystudios@gmail.com">techiboystudios@gmail.com</a></p>
+
+<footer>Kea is an independent app, not affiliated with or endorsed by any device manufacturer.</footer>
+
+</div>
+</body>
+</html>
