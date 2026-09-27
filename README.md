@@ -144,7 +144,3 @@ date at the top will be updated.
 ## Contact
 
 Questions about this policy or the app: **techiboystudios@gmail.com**
-
-## Contact
-
-Questions about this policy or the app: **techiboystudios@gmail.com**
