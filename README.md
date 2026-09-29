@@ -1,23 +1,25 @@
-# Privacy Policy for Kea
+---
+title: Kea Privacy Policy
+---
 
-**Last updated: 26 September 2026**
+**Last updated: 29 September 2026**
 
 Kea is a hardware button remapper for Android, published by **TechiBoy Studios**
 (package `com.techiboystudios.kea`). This policy explains what the app does with your
-information. It is short because Kea collects nothing.
+information. It is short because Kea collects almost nothing: nothing at all unless
+you buy Kea Pro, and then only what is needed to confirm the purchase is genuine.
 
 ## What Kea collects
 
-**Nothing.** Kea does not collect, store on any server, transmit, sell or share any
-personal information, usage data, device identifiers, contacts, location, or analytics of
-any kind. There is no account, no sign-in, and no server.
+**Nothing about you.** Kea does not collect, sell or share any personal information,
+usage data, Android or advertising identifiers, contacts, location, or analytics of any kind. There is no
+account and no sign-in. The one thing Kea sends is a check that a Kea Pro purchase is
+real, described under "Kea Pro purchases" below; without Pro it sends nothing.
 
-## Why that claim is verifiable
+## Internet access
 
-Kea does not request the `INTERNET` permission. An Android app without it cannot open a
-network connection at all, so it is not technically capable of sending your data
-anywhere, whatever any policy might say. You can confirm this yourself in
-**Settings → Apps → Kea → Permissions**, or by inspecting the app's manifest.
+Kea requests the `INTERNET` permission for one purpose only: the Kea Pro purchase check
+below. It makes no other network request.
 
 Kea contains no analytics SDK, no crash-reporting SDK, no advertising SDK and no tracking
 libraries. The third-party code in the app is: Google's AndroidX libraries, the Kotlin
@@ -47,7 +49,7 @@ What the service does, and when:
   the recorder widget.
 
 What Kea reads is used immediately, on your device, and then discarded. It is never
-saved, never logged and never sent anywhere, and without internet access it could not be.
+saved, never logged and never sent anywhere.
 
 The service is declared `isAccessibilityTool="false"` because Kea is a general utility
 rather than an assistive tool for users with disabilities.
@@ -56,12 +58,27 @@ rather than an assistive tool for users with disabilities.
 
 Kea Pro is an optional one-time purchase made through **Google Play**. Google handles the
 payment and your payment details under Google's own privacy policy; Kea never sees them.
-Kea only learns from the Play Store app on your phone whether Pro has been bought, and
-remembers that on your device.
+Kea keeps the purchase receipt Google Play signs on your device.
 
-The Google Play Billing Library adds the `ACCESS_NETWORK_STATE` permission, which lets it
-check whether the phone is online. It is not internet access: Kea still cannot open a
-connection. The purchase itself is carried out by the Play Store app.
+Once you own Kea Pro, Kea checks the purchase with Kea's own server (Google Firebase, in
+India) when you buy or restore it, and then about once a day while you are online. The
+request contains only:
+
+- the purchase token Google Play issued for your purchase, and
+- a random identifier Kea creates for this installation of the app.
+
+No name, email, Google account, device details, settings or usage are sent. The server asks
+Google Play whether that token is a genuine, unrefunded Kea Pro purchase and answers yes or
+no. It stores only one-way hashes of the token and of the installation identifier, with the
+time each installation was last checked, to limit one purchase to five installations in use,
+and never the originals. An installation not checked for 60 days is forgotten. Google's standard Cloud request
+logs may briefly record the connecting IP address. If you never buy Kea Pro, Kea never
+contacts the server. Uninstalling Kea deletes the identifier; to have the stored hashes
+removed, email us.
+
+The Google Play Billing Library and its components are Google's code and, with internet
+access available, may communicate with Google under Google's privacy policy. The purchase
+itself is carried out by the Play Store app.
 
 ## What is stored on your device
 
@@ -93,9 +110,10 @@ then control. Uninstalling Kea deletes this data.
 | Glyph lights | Only for the Glyph torch and Glyph timer actions, on phones that have them |
 | Shizuku | Only for the optional features described below |
 | Google Play billing, network state | Only to buy Kea Pro through Google Play |
+| Internet | Only for the Kea Pro purchase check |
 
-Kea does not request internet access, location, contacts, camera, photos, phone state, or
-any other permission not listed here.
+Kea does not request location, contacts, camera, photos, phone state, or any other
+permission not listed here.
 
 ## Screen recording, voice and call recording
 
@@ -107,7 +125,7 @@ started.
 Voice and call recording are made by your phone's own recorder app; Kea only starts
 it. Those recordings are stored by that app, under its own policy.
 
-Kea never uploads recordings or audio anywhere, and cannot, having no network permission.
+Kea never uploads recordings or audio anywhere.
 
 ## Links to other apps
 
