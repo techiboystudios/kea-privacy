@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy Policy — Kea</title>
-<meta name="description" content="Privacy policy for Kea, a hardware key remapper for Android by TechiBoy Studios. Kea collects nothing and has no internet permission.">
+<meta name="description" content="Privacy policy for Kea, a hardware button remapper for Android by TechiBoy Studios. Kea collects nothing about you; with Kea Pro it only confirms the purchase is genuine.">
 <style>
   :root {
     --bg: #ffffff; --panel: #f7f7f9; --ink: #16161a; --muted: #5c5c64;
@@ -51,95 +51,195 @@
 
 <header>
   <h1>Privacy Policy for Kea</h1>
-  <p class="meta">Last updated: 18 August 2026 &middot; TechiBoy Studios &middot; <code>com.techiboystudios.kea</code></p>
+  <p class="meta">Last updated: 29 September 2026 &middot; TechiBoy Studios &middot; <code>com.techiboystudios.kea</code></p>
 </header>
 
-<p class="lede">Kea is a hardware key remapper for Android. This policy explains what the app
-does with your information. It is short because Kea collects nothing.</p>
+<p class="lede">Kea is a hardware button remapper for Android, published by <strong>TechiBoy Studios</strong>
+(package <code>com.techiboystudios.kea</code>). This policy explains what the app does with your
+information. It is short because Kea collects almost nothing: nothing at all unless
+you buy Kea Pro, and then only what is needed to confirm the purchase is genuine.</p>
 
 <h2>What Kea collects</h2>
-<p><strong>Nothing.</strong> Kea does not collect, store, transmit, sell or share any personal
-information, usage data, device identifiers, contacts, location, or analytics of any kind. There
-is no account, no sign-in, and no server.</p>
-
-<h2>Why that claim is verifiable</h2>
-<p>Kea does not request the <code>INTERNET</code> permission. An Android app without it cannot
-open a network connection at all, so it is not technically capable of sending your data anywhere,
-whatever any policy might say. You can confirm this yourself in
-<strong>Settings &rarr; Apps &rarr; Kea &rarr; Permissions</strong>, or by inspecting the app's
-manifest.</p>
+<p><strong>Nothing about you.</strong> Kea does not collect, sell or share any personal information,
+usage data, advertising identifiers, contacts, location, or analytics of any kind. There is no
+account and no sign-in. The one thing Kea sends is a check that a Kea Pro purchase is
+real, described under "Kea Pro purchases" below; without Pro it sends nothing.</p>
+<h2>Internet access</h2>
+<p>Kea requests the <code>INTERNET</code> permission for one purpose only: the Kea Pro purchase check
+below. It makes no other network request.</p>
 <p>Kea contains no analytics SDK, no crash-reporting SDK, no advertising SDK and no tracking
-libraries. The only third-party code in the app is Google's AndroidX libraries, the Kotlin
-standard library, and the optional Shizuku client described below.</p>
-
+libraries. The third-party code in the app is: Google's AndroidX libraries, the Kotlin
+standard library, the Google Play Billing Library (for Kea Pro, below), the Glyph
+Developer Kit (used only on phones with Glyph lights), and the optional Shizuku client
+described below.</p>
 <h2>Accessibility Service</h2>
-<p>Kea uses an <code>AccessibilityService</code> for one purpose: to detect presses of a hardware
-button. Android provides no other way for an app to observe hardware key events while it is not in
-the foreground.</p>
-<p>The service is declared with <code>canRequestFilterKeyEvents</code> and receives key events
-only. It does <strong>not</strong> request <code>canRetrieveWindowContent</code>, so it cannot read
-the text, images or contents of any screen, in Kea or in any other app. It does not log, store or
-transmit key events. Each press is matched against the key you taught Kea and then acted upon
-locally, on your device.</p>
-<p>The service is declared <code>isAccessibilityTool="false"</code> because Kea is a general
-utility rather than an assistive tool for users with disabilities.</p>
-
+<p>Kea uses an <code>AccessibilityService</code>. Android provides no other way for an app to notice
+hardware button presses while it is not on screen, and that is its main job.</p>
+<p>What the service does, and when:</p>
+<ul>
+<li><strong>Detects your button presses.</strong> Each press is matched against the button you taught
+  Kea and acted on at once. Presses are not logged, stored or transmitted.</li>
+<li><strong>Knows which app is in front,</strong> by its package name only, so that the actions you set
+  up behave correctly in that app. This is kept in memory and never stored.</li>
+<li><strong>Reads what is on screen only at the moment you trigger certain actions,</strong> and only
+  for that action:</li>
+<li><strong>Copy</strong> and <strong>Paste</strong> find the text field you are using.</li>
+<li><strong>Voice recording</strong> and <strong>Call recording</strong> find your recorder's widget on the home
+    screen and tap it for you.</li>
+<li>A few other actions check which window is active, so they act on the app you are
+    using rather than on Kea.</li>
+<li><strong>Performs taps and gestures</strong> only as part of an action you triggered, such as tapping
+  the recorder widget.</li>
+</ul>
+<p>What Kea reads is used immediately, on your device, and then discarded. It is never
+saved, never logged and never sent anywhere.</p>
+<p>The service is declared <code>isAccessibilityTool="false"</code> because Kea is a general utility
+rather than an assistive tool for users with disabilities.</p>
+<h2>Kea Pro purchases</h2>
+<p>Kea Pro is an optional one-time purchase made through <strong>Google Play</strong>. Google handles the
+payment and your payment details under Google's own privacy policy; Kea never sees them.
+Kea keeps the purchase receipt Google Play signs on your device.</p>
+<p>Once you own Kea Pro, Kea checks the purchase with Kea's own server (Google Firebase, in
+India) when you buy or restore it, and then about once a day while you are online. The
+request contains only:</p>
+<ul>
+<li>the purchase token Google Play issued for your purchase, and</li>
+<li>an identifier for this phone: Android's per-app device ID, scrambled (one-way hashed) on
+  your phone before it is sent. Every app sees a different one, so it cannot be used to link
+  Kea to any other app, and it changes if the phone is factory reset.</li>
+</ul>
+<p>No name, email, Google account, phone model, settings or usage are sent. The server asks
+Google Play whether that token is a genuine, unrefunded Kea Pro purchase and answers yes or
+no. It stores only one-way hashes of the token and of the phone identifier, with the time each
+phone was last checked, to limit one purchase to five phones in use, and never the originals.
+Reinstalling Kea on the same phone counts once. A record not checked for 60 days is deleted
+automatically. Google's standard Cloud request
+logs may briefly record the connecting IP address. If you never buy Kea Pro, Kea never
+contacts the server. Uninstalling Kea deletes the identifier; to have the stored hashes
+removed, email us.</p>
+<p>The Google Play Billing Library and its components are Google's code and, with internet
+access available, may communicate with Google under Google's privacy policy. The purchase
+itself is carried out by the Play Store app.</p>
 <h2>What is stored on your device</h2>
-<p>Your settings, which are: the action bound to each gesture, your timing preferences, your chosen
-appearance and accent colour, your overlay position, and the hardware fingerprint of the key you
-taught Kea.</p>
+<p>Your settings, which are: the action bound to each gesture and key, your App Sidebar
+items and layout, your Action Lab combos, your timing, appearance, overlay, sound and
+haptic preferences, your overlay position, whether Kea Pro is unlocked, and the hardware
+fingerprint of the button you taught Kea.</p>
 <p>These live in Kea's private app storage. They never leave your phone unless you choose
-<strong>Backup &amp; restore &rarr; Export settings</strong>, which writes a file to a location you
-pick and then control. Uninstalling Kea deletes this data.</p>
-
+<strong>Backup &amp; restore → Export settings</strong>, which writes a file to a location you pick and
+then control. Uninstalling Kea deletes this data.</p>
 <h2>Permissions, and why each exists</h2>
-<div class="table-scroll">
-<table>
-  <thead><tr><th>Permission</th><th>Why</th></tr></thead>
-  <tbody>
-    <tr><td>Accessibility service</td><td>Detect presses of your hardware button. The app cannot work without it</td></tr>
-    <tr><td>Display over other apps</td><td>Draw the small on-screen confirmation after a press</td></tr>
-    <tr><td>Modify system settings</td><td>Only if you bind the rotation lock or auto-brightness actions</td></tr>
-    <tr><td>Do Not Disturb access</td><td>Only if you bind the Do Not Disturb or ringer actions</td></tr>
-    <tr><td>Vibrate</td><td>Haptic confirmation on a press</td></tr>
-    <tr><td>Wake lock</td><td>Only if you bind the wake-screen action. Held for a moment, then released</td></tr>
-    <tr><td>Foreground service, media projection</td><td>Only if you bind the screen-recording action</td></tr>
-    <tr><td>Notifications</td><td>The ongoing notification Android requires while a recording runs</td></tr>
-    <tr><td>Microphone</td><td>Only if you turn on microphone audio for screen recordings. Off by default</td></tr>
-  </tbody>
-</table>
-</div>
-<p>Kea does not request internet access, location, contacts, storage access, phone state, or any
-other permission not listed here.</p>
-
-<h2>Screen recording and microphone</h2>
-<p>If you bind the screen-recording action, recordings are written to your device's own media
-storage through Android's MediaProjection API, after the system consent dialog. Recording only ever
-starts when you press your button. Microphone capture is off by default and is used only inside a
-recording you started. Kea never uploads recordings or audio anywhere, and cannot, having no
-network permission.</p>
-
+<div class="table-scroll"><table>
+<thead>
+<tr>
+<th>Permission</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Accessibility service</td>
+<td>Detect presses of your hardware button, and run the actions described above</td>
+</tr>
+<tr>
+<td>Display over other apps</td>
+<td>Draw the on-screen confirmation and the App Sidebar</td>
+</tr>
+<tr>
+<td>Modify system settings</td>
+<td>Only for the rotation lock and auto-brightness actions</td>
+</tr>
+<tr>
+<td>Do Not Disturb access</td>
+<td>Only for the Do Not Disturb and ringer actions</td>
+</tr>
+<tr>
+<td>Answer phone calls</td>
+<td>Only for the End call action</td>
+</tr>
+<tr>
+<td>Microphone</td>
+<td>Only if you turn on microphone audio for screen recordings. Off by default</td>
+</tr>
+<tr>
+<td>Music and audio</td>
+<td>Only for the Recordings screen, which lists and plays the voice and call recordings already on your phone</td>
+</tr>
+<tr>
+<td>Set alarm</td>
+<td>Only for the Set a timer action</td>
+</tr>
+<tr>
+<td>Vibrate</td>
+<td>Haptic confirmation on a press</td>
+</tr>
+<tr>
+<td>Wake lock</td>
+<td>Only for the Wake screen action. Held for a moment, then released</td>
+</tr>
+<tr>
+<td>Foreground service, media projection</td>
+<td>Only for the Screen recording action</td>
+</tr>
+<tr>
+<td>Notifications</td>
+<td>The ongoing notification Android requires while a recording runs</td>
+</tr>
+<tr>
+<td>Glyph lights</td>
+<td>Only for the Glyph torch and Glyph timer actions, on phones that have them</td>
+</tr>
+<tr>
+<td>Shizuku</td>
+<td>Only for the optional features described below</td>
+</tr>
+<tr>
+<td>Google Play billing, network state</td>
+<td>Only to buy Kea Pro through Google Play</td>
+</tr>
+<tr>
+<td>Internet</td>
+<td>Only for the Kea Pro purchase check</td>
+</tr>
+</tbody>
+</table></div>
+<p>Kea does not request location, contacts, camera, photos, phone state, or any other
+permission not listed here.</p>
+<h2>Screen recording, voice and call recording</h2>
+<p>Screen recordings are written to your device's own media storage through Android's
+MediaProjection API, after the system consent dialog. Recording only starts when you
+trigger it. Microphone capture is off by default and used only inside a recording you
+started.</p>
+<p>Voice and call recording are made by your phone's own recorder app; Kea only starts
+it. Those recordings are stored by that app, under its own policy.</p>
+<p>Kea never uploads recordings or audio anywhere.</p>
+<h2>Links to other apps</h2>
+<p>The About screen can open Google Play (to rate or share Kea), your email app, and
+TechiBoy Studios' social media pages. These open in their own apps or your browser, and
+whatever you do there is covered by those services' own policies. Kea itself sends
+nothing.</p>
 <h2>Shizuku</h2>
-<p>Two optional features can use <a href="https://shizuku.rikka.app/">Shizuku</a>, a separate app
-you would install yourself: the camera shutter action, and helping you switch off a phone
-manufacturer's own action on the button.</p>
-<p>When used, Kea asks Shizuku to run a single shell command on the device. No data is sent, and
-nothing leaves your phone. If Shizuku is not installed, these two features are simply unavailable
-and everything else works normally.</p>
-
+<p>Some optional features can use <a href="https://shizuku.rikka.app/">Shizuku</a>, a separate app you
+would install yourself: the camera shutter action, and switching off your phone's own
+action on the button.</p>
+<p>When used, Kea asks Shizuku to run a single shell command on the device. No data is sent,
+and nothing leaves your phone. If Shizuku is not installed, these features are simply
+unavailable and everything else works normally.</p>
 <h2>Children</h2>
 <p>Kea is not directed at children and collects no data from anyone, of any age.</p>
-
 <h2>Deleting your data</h2>
-<p>There is no data held anywhere for us to delete. Uninstalling Kea removes its settings from your
-device. Any backup file you exported yourself remains wherever you saved it, under your control.</p>
-
+<p>Uninstalling Kea removes its settings from your device. Any backup file you exported yourself remains wherever you saved it, under your
+control.</p>
+<p>If you own Kea Pro, our server holds only the hashed purchase token and hashed phone
+identifiers described under "Kea Pro purchases". They are one-way hashes, so we cannot tell
+which record belongs to whom and cannot find yours from an email. Instead, a record is
+deleted automatically 60 days after a phone last checked in: uninstall Kea, or stop using
+Kea Pro, and it is gone within 60 days.</p>
 <h2>Changes to this policy</h2>
-<p>If this policy changes, the updated version will be published at this address and the date at
-the top will be updated.</p>
-
+<p>If this policy changes, the updated version will be published at this address and the
+date at the top will be updated.</p>
 <h2>Contact</h2>
-<p>Questions about this policy or the app: <a href="mailto:techiboystudios@gmail.com">techiboystudios@gmail.com</a></p>
+<p>Questions about this policy or the app: <strong>techiboystudios@gmail.com</strong></p>
 
 <footer>Kea is an independent app, not affiliated with or endorsed by any device manufacturer.</footer>
 
