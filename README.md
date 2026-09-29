@@ -10,7 +10,7 @@ you buy Kea Pro, and then only what is needed to confirm the purchase is genuine
 ## What Kea collects
 
 **Nothing about you.** Kea does not collect, sell or share any personal information,
-usage data, Android or advertising identifiers, contacts, location, or analytics of any kind. There is no
+usage data, advertising identifiers, contacts, location, or analytics of any kind. There is no
 account and no sign-in. The one thing Kea sends is a check that a Kea Pro purchase is
 real, described under "Kea Pro purchases" below; without Pro it sends nothing.
 
@@ -63,13 +63,16 @@ India) when you buy or restore it, and then about once a day while you are onlin
 request contains only:
 
 - the purchase token Google Play issued for your purchase, and
-- a random identifier Kea creates for this installation of the app.
+- an identifier for this phone: Android's per-app device ID, scrambled (one-way hashed) on
+  your phone before it is sent. Every app sees a different one, so it cannot be used to link
+  Kea to any other app, and it changes if the phone is factory reset.
 
-No name, email, Google account, device details, settings or usage are sent. The server asks
+No name, email, Google account, phone model, settings or usage are sent. The server asks
 Google Play whether that token is a genuine, unrefunded Kea Pro purchase and answers yes or
-no. It stores only one-way hashes of the token and of the installation identifier, with the
-time each installation was last checked, to limit one purchase to five installations in use,
-and never the originals. A record not checked for 60 days is deleted automatically. Google's standard Cloud request
+no. It stores only one-way hashes of the token and of the phone identifier, with the time each
+phone was last checked, to limit one purchase to five phones in use, and never the originals.
+Reinstalling Kea on the same phone counts once. A record not checked for 60 days is deleted
+automatically. Google's standard Cloud request
 logs may briefly record the connecting IP address. If you never buy Kea Pro, Kea never
 contacts the server. Uninstalling Kea deletes the identifier; to have the stored hashes
 removed, email us.
@@ -148,15 +151,14 @@ Kea is not directed at children and collects no data from anyone, of any age.
 
 ## Deleting your data
 
-Uninstalling Kea removes its settings and its random installation identifier from your
-device. Any backup file you exported yourself remains wherever you saved it, under your
+Uninstalling Kea removes its settings from your device. Any backup file you exported yourself remains wherever you saved it, under your
 control.
 
-If you own Kea Pro, our server holds only the hashed purchase token and hashed installation
+If you own Kea Pro, our server holds only the hashed purchase token and hashed phone
 identifiers described under "Kea Pro purchases". They are one-way hashes, so we cannot tell
 which record belongs to whom and cannot find yours from an email. Instead, a record is
-deleted automatically 60 days after an installation last checked in: uninstall Kea, or stop
-using Kea Pro, and it is gone within 60 days.
+deleted automatically 60 days after a phone last checked in: uninstall Kea, or stop using
+Kea Pro, and it is gone within 60 days.
 
 ## Changes to this policy
 
