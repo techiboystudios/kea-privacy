@@ -1,6 +1,4 @@
----
-title: Kea Privacy Policy
----
+# Privacy Policy for Kea
 
 **Last updated: 29 September 2026**
 
@@ -71,7 +69,7 @@ No name, email, Google account, device details, settings or usage are sent. The 
 Google Play whether that token is a genuine, unrefunded Kea Pro purchase and answers yes or
 no. It stores only one-way hashes of the token and of the installation identifier, with the
 time each installation was last checked, to limit one purchase to five installations in use,
-and never the originals. An installation not checked for 60 days is forgotten. Google's standard Cloud request
+and never the originals. A record not checked for 60 days is deleted automatically. Google's standard Cloud request
 logs may briefly record the connecting IP address. If you never buy Kea Pro, Kea never
 contacts the server. Uninstalling Kea deletes the identifier; to have the stored hashes
 removed, email us.
@@ -150,9 +148,15 @@ Kea is not directed at children and collects no data from anyone, of any age.
 
 ## Deleting your data
 
-There is no data held anywhere for us to delete. Uninstalling Kea removes its settings
-from your device. Any backup file you exported yourself remains wherever you saved it,
-under your control.
+Uninstalling Kea removes its settings and its random installation identifier from your
+device. Any backup file you exported yourself remains wherever you saved it, under your
+control.
+
+If you own Kea Pro, our server holds only the hashed purchase token and hashed installation
+identifiers described under "Kea Pro purchases". They are one-way hashes, so we cannot tell
+which record belongs to whom and cannot find yours from an email. Instead, a record is
+deleted automatically 60 days after an installation last checked in: uninstall Kea, or stop
+using Kea Pro, and it is gone within 60 days.
 
 ## Changes to this policy
 
@@ -162,3 +166,4 @@ date at the top will be updated.
 ## Contact
 
 Questions about this policy or the app: **techiboystudios@gmail.com**
+
