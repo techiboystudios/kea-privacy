@@ -1,6 +1,6 @@
 # Privacy Policy for Kea
 
-**Last updated: 29 September 2026**
+**Last updated: 1 October 2026**
 
 Kea is a hardware button remapper for Android, published by **TechiBoy Studios**
 (package `com.techiboystudios.kea`). This policy explains what the app does with your
@@ -157,8 +157,8 @@ control.
 If you own Kea Pro, our server holds only the hashed purchase token and hashed phone
 identifiers described under "Kea Pro purchases". They are one-way hashes, so we cannot tell
 which record belongs to whom and cannot find yours from an email. Instead, a record is
-deleted automatically 60 days after a phone last checked in: uninstall Kea, or stop using
-Kea Pro, and it is gone within 60 days.
+deleted automatically 30 days after a phone last checked in: uninstall Kea, or stop using
+Kea Pro, and it is gone within 30 days.
 
 ## Changes to this policy
 
