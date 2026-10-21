@@ -48,8 +48,8 @@ Kea requests the `INTERNET` permission. It is used for these things and no other
   the file and its release list (`manifest.json`); GitHub sees ordinary request details such as
   your IP address. Only github.com and GitHub's release file hosts are accepted, and each file
   is checked against a known SHA-256 hash before it is used.
-- **Link previews in Kea Board (Kea Pro).** See "Kea Board". They are on by default and can be
-  switched off in Board settings.
+- **Link previews in Kea Board (Kea Pro).** See "Kea Board". They are off by default and can be
+  switched on in Board settings.
 - **Google Play.** Buying and restoring Kea Pro goes through Google Play (see "Kea Pro
   purchases"). Google Play Billing and Play Integrity are Google's code and may send their own
   diagnostics to Google.
@@ -174,7 +174,7 @@ labels and text are stored with the item.
 - **Search by meaning** uses the encoder you download from AI packages. Without it, Board
   falls back to keyword matching. Board does not upload search queries, saved text, images or
   embeddings.
-- **Link previews** (on by default, switchable in Board settings) run when Board shows a
+- **Link previews** (off by default, switch on in Board settings) run when Board shows a
   saved link that has no preview yet, or when you refresh previews. Kea fetches the address
   you saved over HTTPS from that website, reads its title, description, picture and icon, and
   downloads the picture and icon the page names, which may be on other hosts. Those websites
