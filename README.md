@@ -1,25 +1,29 @@
 # Privacy Policy for Kea
 
-**Last updated: 21 October 2026** (for Kea 2.0)
+**Last updated: 24 October 2026** (for Kea 2.0)
 
 Kea is a hardware button remapper for Android, published by **TechiBoy Studios**
-(package `com.techiboystudios.kea`). This policy explains what the app does with your
-information. It is short because Kea collects almost nothing. There is no account, no
-analytics and no advertising. Kea's AI features run on your phone: what you see on screen, the
-text Kea reads and your pictures are not sent to us or anywhere else by Kea. A few things do
-leave the phone, and each is listed under "Internet access" below: the check that a Kea Pro
-purchase is genuine, downloads of language packs and models, the diagnostics that Google's
-ML Kit sends to Google, and link previews if you use Kea Board.
+(package `com.techiboystudios.kea`). This policy explains the information Kea accesses,
+stores and transmits. There is no Kea account or sign-in, no advertising and no first-party
+tracking analytics. OCR, translation and local AI search process their input on your phone.
+Kea does not send that input to our servers. Purchase verification, model downloads, Google
+SDK diagnostics and optional link previews involve network requests described below. Text you
+ask to hear is passed to your selected text-to-speech engine; sharing sends content to the app
+you choose. Those exceptions are explained below.
 
 ## What Kea collects
 
-**Nothing about you.** Kea itself does not collect, sell or share any personal information,
-advertising identifiers, contacts, location or analytics. There is no account and no sign-in.
-Kea's own server receives only the Kea Pro purchase check described under "Kea Pro purchases",
-and only if you own Kea Pro.
+Kea does not sell personal data, use advertising identifiers, or collect your contacts or
+location. Most feature content stays on your phone. Kea's purchase-verification service
+processes a purchase token, a pseudonymous installation identifier and app-integrity information
+when checking Pro. Network services also receive connection information such as your IP address.
+Hashed identifiers are used to reduce exposure; they are not a guarantee that all associated
+information is anonymous.
 
-Kea uses Google libraries (ML Kit, Google Play services, Play Billing, Play Integrity) that
-can talk to Google on their own, under Google's privacy policy. They are described below.
+Google libraries (ML Kit, Google Play services, Play Billing and Play Integrity), GitHub
+download hosts and websites contacted for enabled link previews process the information described
+below under their own policies. Local feature counters are not uploaded to us. If you contact
+support, we receive what you choose to send, as described under "Support and privacy requests".
 
 ## Internet access
 
@@ -33,7 +37,9 @@ Kea requests the `INTERNET` permission. It is used for these things and no other
   Translation packs are fetched through ML Kit; the other models through Google Play services.
 - **Diagnostics that Google ML Kit sends to Google** when you use these features. Google
   describes them in [its ML Kit data disclosure](https://developers.google.com/ml-kit/android-data-disclosure):
-  device manufacturer, model and Android version, Kea's package name and version, performance
+  device manufacturer, model and Android version, Kea's package name and version,
+  device and per-installation identifiers used for diagnostics and usage analytics (depending
+  on whether the SDK feature is downloaded through Play services or bundled), performance
   figures such as latency, feature settings such as image size, event types such as model
   downloads, error codes, and for translation and language identification the languages
   involved. Google states that this is used for diagnostics and usage analytics, is encrypted
@@ -54,8 +60,9 @@ Kea requests the `INTERNET` permission. It is used for these things and no other
   purchases"). Google Play Billing and Play Integrity are Google's code and may send their own
   diagnostics to Google.
 
-Kea contains no analytics SDK, no crash-reporting SDK, no advertising SDK and no tracking
-libraries of its own. The third-party code in the app is:
+Kea includes no separate first-party analytics, advertising or crash-reporting SDK. Google
+SDK diagnostic and usage-analytics traffic is described above; this is distinct from Kea
+uploading its own local feature counters. The third-party code in the app is:
 
 - Google's AndroidX and Jetpack Compose libraries, the Kotlin standard library, kotlinx
   coroutines and serialization;
@@ -114,8 +121,10 @@ What the service does, and when:
   the recorder widget or holding the bottom of the screen to start your phone's Circle to
   Search.
 
-What Kea reads is used immediately, on your device, and then discarded. It is never
-logged and never sent anywhere. It is saved only when you ask: a picture you save with **Save**
+Screen content read for these actions is processed on your device and is not sent to our
+servers or written to our logs. Read aloud and Read screen hand text to your selected TTS
+engine, and user-requested sharing passes content to the chosen app. Temporary copies and
+local retention are described below. Results are saved when you ask: a picture you save with **Save**
 (to Pictures/Kea), content you add to Kea Board, or text and images you copy with **Copy**.
 Anything you copy goes on Android's clipboard, where other apps can read it under Android's
 own rules.
@@ -128,7 +137,9 @@ rather than an assistive tool for users with disabilities.
 Grab text, Smart actions, Look up, Screen translation, Redacted screenshot, Cut out and Kea
 Board are part of Kea Pro. They run on your phone. Read aloud and Read screen are free and use
 your phone's own text-to-speech engine, which Kea does not choose or download; that engine
-is set in Android and is covered by its own policy.
+is set in Android and is covered by its own policy. Kea does not require an offline voice: an
+online engine may send the text to its provider to generate speech. Check your engine and
+voice settings if you want speech processing to remain offline.
 
 - **Grab text** reads the text in a screenshot and lets you copy or share it.
 - **Smart actions** find links, email addresses, phone numbers and one-time codes in that
@@ -199,16 +210,17 @@ Kea keeps the purchase receipt Google Play signs on your device, and the signed 
 Kea's server described below.
 
 Once you own Kea Pro, Kea checks the purchase with Kea's own server (a Google Cloud function
-using Firebase, in India) when you buy or restore it, and then about once a day while you are
-online. The request contains only:
+using Firebase, in India) when you buy or restore it and periodically during online Pro use,
+normally when the last signed server check is more than 12 hours old. Checks are activity-based,
+not a guaranteed background schedule; failed checks can be retried. The request contains only:
 
 - the purchase token Google Play issued for your purchase;
 - the app's package name and the product name (`kea_pro_lifetime`);
-- an identifier for this phone: Android's per-app device ID, combined with Kea's package name
-  and scrambled (one-way hashed) on your phone before it is sent. Every app sees a different
-  one, so it cannot be used to link Kea to any other app, and it changes if the phone is
-  factory reset. (On the rare phone with no usable ID, a random number saved in Kea is used
-  instead);
+- an installation identifier derived from Android's ID for the app-signing key, Android user
+  and device, combined with Kea's package name and one-way hashed on your phone before it is
+  sent. The raw Android ID is not sent. The normal identifier survives reinstall on the same
+  device and user, but can change after a factory reset, signing-key change or user/profile
+  change. On a phone with no usable ID, Kea uses a random value saved in app storage instead;
 - a **Play Integrity token** and a one-time random value tied to it. Kea requests the token
   from Google Play services, only at the moment of this check and not for people without Pro.
   It is a signed statement from Google about whether this copy of Kea is the genuine version
@@ -223,15 +235,29 @@ answer about the phone itself, such as root, and an unreadable result never take
 Only a signed refusal about your purchase ever turns Pro off; a server that cannot be reached
 does not.
 
-The server stores only one-way hashes of the purchase token and of the phone identifier, with
-the time each phone was last checked, to limit one purchase to five phones in use, and never
-the originals. It does not store the Play Integrity token. Reinstalling Kea on the same phone
-counts once. A purchase record is deleted automatically when none of its phones has checked
-in for 30 days. When the server turns down a modified copy it may write a short technical
-reason to its log, without your purchase token or phone identifier. Google's standard Cloud
-request logs may briefly record the connecting IP address. If you never buy Kea Pro, Kea never
-contacts the server. Uninstalling Kea deletes the identifier; to have the stored hashes
-removed, email us.
+The purchase database stores one-way hashes of the purchase token and installation
+identifier, installation check-in timestamps and a record expiry time, rather than the original
+tokens or identifiers. It limits one purchase to five active installations. The Play Integrity
+token is processed for verification and is not stored in that database. Reinstalling on the same
+device and user normally reuses the installation slot; the random-ID fallback can change after
+uninstall.
+
+An installation stops counting as active after 30 days without a check-in. The whole purchase
+record becomes eligible for deletion 30 days after the latest allowed check-in from any of its
+installations. Firestore TTL deletion is asynchronous, typically within 24 hours after expiry.
+Continued use on another device can keep the purchase record alive; inactive entries are pruned
+when later allowed check-ins update it. The retention and request process are explained under
+"Deleting your data".
+
+Google Cloud request logs can contain connection metadata, including IP address, time and
+HTTP status; technical logs can include a short verification failure category. We avoid logging
+purchase tokens, integrity tokens, raw installation identifiers and screen content. The default
+request-log bucket is currently configured for 30-day retention. Google may retain separate
+service or audit records under its own policies; the purchase-database expiry does not delete
+those records. Kea does not contact its purchase-verification server for users without Pro.
+
+Uninstalling removes Kea's stored receipts and fallback identifier, but does not reset the
+Android-managed ID or directly delete server records. See "Deleting your data".
 
 The Google Play Billing Library and Play Integrity are Google's code and, with internet
 access available, may communicate with Google under Google's privacy policy. The purchase
@@ -319,7 +345,9 @@ recording when it stops. Microphone capture is used only inside a recording you 
 Voice and call recording are made by your phone's own recorder app; Kea only starts
 it. Those recordings are stored by that app, under its own policy.
 
-Kea never uploads recordings, audio, screenshots or anything it reads from the screen.
+Kea does not upload recordings, audio, screenshots or OCR/translation input to our servers.
+Sharing content with another app and handing text to your chosen TTS engine are user-triggered
+exceptions described above; the receiving service has its own data handling.
 
 ## Links to other apps
 
@@ -346,27 +374,58 @@ features are simply unavailable and everything else works normally.
 
 ## Children
 
-Kea is not directed at children and collects no data from anyone, of any age.
+Kea is not directed at children. The limited data handling described in this policy applies
+when its features are used; the absence of an account does not mean that no data is processed.
+If you believe a child has sent us personal information, contact us so we can review the request
+and take appropriate action.
 
 ## Deleting your data
 
-Uninstalling Kea removes its settings, Kea Notes, Board content, downloaded packages and
-stickers from your device. Any backup file you exported yourself, and any image you saved to
-Pictures/Kea or Pictures/Stickers or shared, remains wherever you put it, under your control.
+You can remove Board items, notes and downloaded packages within Kea. Uninstalling removes
+Kea's private app data, including settings, notes, Board content, receipts and downloaded packs.
+Backup files you exported, images saved to Pictures/Kea or Pictures/Stickers, recordings in
+shared media storage and content shared to another app can remain outside Kea's private
+storage. Delete those copies at their saved location or through the receiving app. Clearing
+Kea's cache removes temporary shared-result files kept there.
 
-If you own Kea Pro, our server holds only the hashed purchase token and hashed phone
-identifiers described under "Kea Pro purchases". They are one-way hashes, so we cannot tell
-which record belongs to whom and cannot find yours from an email. Instead, a record is
-deleted automatically 30 days after a phone last checked in: uninstall Kea, or stop using
-Kea Pro, and it is gone within about 30 days.
+Uninstalling does not reset the Android-managed identifier or immediately erase the purchase
+record. The record becomes eligible for automatic deletion after 30 days without an allowed
+check-in from **any** installation using that purchase. Firestore deletes expired records
+asynchronously, typically within another 24 hours. Another active installation can keep the
+record alive. Request-log retention is separate, as described under "Kea Pro purchases".
 
-Data that Google holds under its own policies (for Google Play purchases, Play Integrity and
-ML Kit diagnostics) is managed by Google, not by us.
+For privacy questions or deletion requests, contact **techiboystudios@gmail.com**. An email
+address alone does not identify a hashed purchase record. We will explain what can be located
+and what verification is needed before handling a request; we do not promise an immediate
+record match or deletion based only on an email. Do not email purchase tokens, Play Integrity
+tokens, passwords or payment-card details. Kea has no app account to delete. Applicable rights
+and lawful retention requirements are not limited by this description.
+
+Google Play purchase records, Google SDK diagnostics and data held by other services are
+managed under those services' policies; uninstalling Kea does not delete them.
+
+## Support and privacy requests
+
+If you email us, we receive your email address, message and any information or attachments you
+choose to include. We use them to answer the request, troubleshoot the issue and keep necessary
+support or legal records. Correspondence is handled through our email provider and is retained
+as needed for those purposes and applicable obligations. You can ask about or request deletion
+of correspondence using the contact address below. Avoid sending sensitive screenshots or
+other information that is not needed to explain the issue.
+
+## How information is protected and where it is processed
+
+Kea uses HTTPS for its network requests, keeps private app data in Android's app storage and
+encrypts new purchase-receipt records with Android Keystore-backed keys. These measures do not
+make every locally saved or exported file encrypted, and no system guarantees absolute security.
+The purchase-verification function is hosted in India. Google, GitHub, contacted websites and
+our email provider may process information in other countries under their respective policies.
 
 ## Changes to this policy
 
 If this policy changes, the updated version will be published at this address and the
-date at the top will be updated.
+date at the top will be updated. Material changes will be brought to your attention in the app
+or through another appropriate notice, with any consent required by applicable law.
 
 ## Contact
 
