@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — Kea</title>
+<title>Privacy Policy · Kea</title>
 <meta name="description" content="Privacy policy for Kea, a hardware button remapper for Android by TechiBoy Studios. No account, no analytics, no ads; AI features run on your phone. Lists exactly what leaves the phone and why.">
 <style>
   :root {
@@ -51,7 +51,7 @@
 
 <header>
   <h1>Privacy Policy for Kea</h1>
-  <p class="meta">Last updated: 24 October 2026 &middot; TechiBoy Studios &middot; <code>com.techiboystudios.kea</code></p>
+  <p class="meta">Last updated: 13 November 2026 &middot; TechiBoy Studios &middot; <code>com.techiboystudios.kea</code></p>
 </header>
 
 <p class="lede">Kea is a hardware button remapper for Android, published by <strong>TechiBoy Studios</strong>
@@ -76,6 +76,7 @@ support, we receive what you choose to send, as described under "Support and pri
 <h2>Internet access</h2>
 <p>Kea requests the <code>INTERNET</code> permission. It is used for these things and no others:</p>
 <ul>
+<li><strong>Update availability from Google Play.</strong> Opening Changelog asks the installed Google Play Store whether a newer Kea build is available for your account and device. This uses Google Play’s update API, not a Kea server. Google Play processes device metadata, the installed app version, and installed module and asset-pack information to determine update availability and size. Google states that this data is encrypted, is not transferred to third parties, and is deleted after a fixed retention period. No screen content or support messages are sent to us. Tapping Update opens Kea’s Google Play listing; Google Play handles the download and installation under its own policy.</li>
 <li><strong>The Kea Pro purchase check</strong>, only once you own Pro. See "Kea Pro purchases".</li>
 <li><strong>Language packs and models from Google.</strong> Screen translation downloads a language pack
   (about 30 MB each) when you add a language or first translate from or into it. Google Play
@@ -318,7 +319,7 @@ packages in AI packages and language packs in Screen translation settings.</p>
 <p>Permissions marked "adb or Shizuku" are ones Android does not let you grant in the normal
 permission screens. They are optional, and the features that need them are simply
 unavailable until you grant them.</p>
-<table>
+<div class="table-scroll"><table>
 <thead>
 <tr>
 <th>Permission</th>
@@ -328,7 +329,7 @@ unavailable until you grant them.</p>
 <tbody>
 <tr>
 <td>Accessibility service</td>
-<td>Detect presses of your hardware button, take screenshots and read the screen for the actions described above, and perform taps and gestures</td>
+<td>Detect presses of your hardware button, take screenshots and read the screen for the actions described above, and perform taps and gestures. With <strong>Payments pause</strong> on, notice when a payment app comes to the front so Kea can switch itself off</td>
 </tr>
 <tr>
 <td>Display over other apps</td>
@@ -367,20 +368,20 @@ unavailable until you grant them.</p>
 <td>Only for the Wake screen action. Held for a moment, then released</td>
 </tr>
 <tr>
-<td>Foreground service, media projection</td>
-<td>Only for the Screen recording action</td>
+<td>Foreground service</td>
+<td>Media projection only for the Screen recording action. A short foreground service only while <strong>Payments pause</strong> waits for you to leave a payment app, for at most about three minutes</td>
 </tr>
 <tr>
 <td>Notifications</td>
-<td>The ongoing notification Android requires while a recording runs</td>
+<td>The ongoing notification Android requires while a recording runs, and the notification that says Kea is paused for a payment app, whose tap turns Kea back on</td>
 </tr>
 <tr>
 <td>Usage access</td>
-<td>Only if you turn on <strong>Suggest an app</strong> for the App Sidebar or use its <strong>Most used</strong> app filter. Kea asks Android which apps you used most (the last two days for the suggestion, the last week for the filter), on your phone, when it needs to. Only the result is used; it is not stored or sent anywhere. You grant it yourself in Settings, and can take it back there</td>
+<td>Only if you turn on <strong>Suggest an app</strong> for the App Sidebar or use its <strong>Most used</strong> app filter. Kea asks Android which apps you used most (the last two days for the suggestion, the last week for the filter), on your phone, when it needs to. Only the result is used; it is not stored or sent anywhere. You grant it yourself in Settings, and can take it back there. With <strong>Payments pause</strong> on, Kea also checks which app is in front, once a second and only while it is paused for a payment app, to know when to turn itself back on. That is not stored or sent anywhere either</td>
 </tr>
 <tr>
 <td>Write secure settings (adb or Shizuku)</td>
-<td>Only for Night Light, Extra dim and Glyph controls, and to let the Quick Settings tile switch Kea's own accessibility service back on. Granted once by you through Shizuku or a computer (adb). Kea uses it only for these purposes</td>
+<td>Only for Night Light, Extra dim and Glyph controls, and to let the Quick Settings tile and <strong>Payments pause</strong> switch Kea's own accessibility service back on. Granted once by you through Shizuku or a computer (adb). Kea uses it only for these purposes</td>
 </tr>
 <tr>
 <td>Glyph lights</td>
@@ -399,7 +400,7 @@ unavailable until you grant them.</p>
 <td>The Kea Pro purchase check, downloading language packs, models and AI packages, ML Kit's diagnostics, and Board link previews (see "Internet access")</td>
 </tr>
 </tbody>
-</table>
+</table></div>
 <p>Some declarations are not permissions Kea asks you for. They only decide who may reach Kea,
 and Android grants them to the system, not to Kea:</p>
 <ul>

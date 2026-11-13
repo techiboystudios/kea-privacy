@@ -1,6 +1,6 @@
 # Privacy Policy for Kea
 
-**Last updated: 24 October 2026** (for Kea 2.0)
+**Last updated: 13 November 2026** (for Kea 2.0.2)
 
 Kea is a hardware button remapper for Android, published by **TechiBoy Studios**
 (package `com.techiboystudios.kea`). This policy explains the information Kea accesses,
@@ -29,6 +29,7 @@ support, we receive what you choose to send, as described under "Support and pri
 
 Kea requests the `INTERNET` permission. It is used for these things and no others:
 
+- **Update availability from Google Play.** Opening Changelog asks the installed Google Play Store whether a newer Kea build is available for your account and device. This uses Google Play’s update API, not a Kea server. Google Play processes device metadata, the installed app version, and installed module and asset-pack information to determine update availability and size. Google states that this data is encrypted, is not transferred to third parties, and is deleted after a fixed retention period. No screen content or support messages are sent to us. Tapping Update opens Kea’s Google Play listing; Google Play handles the download and installation under its own policy.
 - **The Kea Pro purchase check**, only once you own Pro. See "Kea Pro purchases".
 - **Language packs and models from Google.** Screen translation downloads a language pack
   (about 30 MB each) when you add a language or first translate from or into it. Google Play
@@ -295,7 +296,7 @@ unavailable until you grant them.
 
 | Permission | Why |
 |---|---|
-| Accessibility service | Detect presses of your hardware button, take screenshots and read the screen for the actions described above, and perform taps and gestures |
+| Accessibility service | Detect presses of your hardware button, take screenshots and read the screen for the actions described above, and perform taps and gestures. With **Payments pause** on, notice when a payment app comes to the front so Kea can switch itself off |
 | Display over other apps | Draw the on-screen confirmation, the App Sidebar, Kea Board and the AI overlays |
 | Modify system settings | Only for the rotation lock and auto-brightness actions |
 | Do Not Disturb access | Only for the Do Not Disturb and ringer actions |
@@ -305,10 +306,10 @@ unavailable until you grant them.
 | Set alarm | Only for the Set a timer action |
 | Vibrate | Haptic confirmation on a press |
 | Wake lock | Only for the Wake screen action. Held for a moment, then released |
-| Foreground service, media projection | Only for the Screen recording action |
-| Notifications | The ongoing notification Android requires while a recording runs |
-| Usage access | Only if you turn on **Suggest an app** for the App Sidebar or use its **Most used** app filter. Kea asks Android which apps you used most (the last two days for the suggestion, the last week for the filter), on your phone, when it needs to. Only the result is used; it is not stored or sent anywhere. You grant it yourself in Settings, and can take it back there |
-| Write secure settings (adb or Shizuku) | Only for Night Light, Extra dim and Glyph controls, and to let the Quick Settings tile switch Kea's own accessibility service back on. Granted once by you through Shizuku or a computer (adb). Kea uses it only for these purposes |
+| Foreground service | Media projection only for the Screen recording action. A short foreground service only while **Payments pause** waits for you to leave a payment app, for at most about three minutes |
+| Notifications | The ongoing notification Android requires while a recording runs, and the notification that says Kea is paused for a payment app, whose tap turns Kea back on |
+| Usage access | Only if you turn on **Suggest an app** for the App Sidebar or use its **Most used** app filter. Kea asks Android which apps you used most (the last two days for the suggestion, the last week for the filter), on your phone, when it needs to. Only the result is used; it is not stored or sent anywhere. You grant it yourself in Settings, and can take it back there. With **Payments pause** on, Kea also checks which app is in front, once a second and only while it is paused for a payment app, to know when to turn itself back on. That is not stored or sent anywhere either |
+| Write secure settings (adb or Shizuku) | Only for Night Light, Extra dim and Glyph controls, and to let the Quick Settings tile and **Payments pause** switch Kea's own accessibility service back on. Granted once by you through Shizuku or a computer (adb). Kea uses it only for these purposes |
 | Glyph lights | Only for the Glyph torch and Glyph timer actions, on phones that have them |
 | Shizuku | Only for the optional features described below |
 | Google Play billing, network state | Only to buy Kea Pro through Google Play, and to warn before a large download on mobile data |
